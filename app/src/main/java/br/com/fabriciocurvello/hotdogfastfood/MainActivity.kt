@@ -48,8 +48,6 @@ class MainActivity : AppCompatActivity() {
          tomateSW = findViewById(R.id.sw_tomate)
          queijoRaladoSw = findViewById(R.id.sw_queijo_ralado)
 
-
-
          //Listener no Botão
          pedidoBt.setOnClickListener {
              val proteinaSelecionada = proteina()

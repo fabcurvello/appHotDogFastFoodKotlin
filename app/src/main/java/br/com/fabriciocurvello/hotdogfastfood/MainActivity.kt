@@ -47,21 +47,29 @@ class MainActivity : AppCompatActivity() {
          alfaceSw = findViewById(R.id.sw_alface)
          tomateSW = findViewById(R.id.sw_tomate)
          queijoRaladoSw = findViewById(R.id.sw_queijo_ralado)
+         nomeEt = findViewById(R.id.et_nome)
+         saidaPedidoTv = findViewById(R.id.tv_saida_pedido)
 
          //Listener no Botão
          pedidoBt.setOnClickListener {
              val proteinaSelecionada = proteina()
              val molhosSelecionados = molhos()
              val acompanhamentosSelecionados = acompanhamentos()
+             val cliente = nomeCliente()
 
+             var texto = "Cliente: " + cliente + "\n\n" +
+                     proteinaSelecionada + "\n" +
+                     molhosSelecionados + "\n" +
+                     acompanhamentosSelecionados
 
-            Toast.makeText(this,"$acompanhamentosSelecionados", Toast.LENGTH_SHORT).show()
+             saidaPedidoTv.text = texto
+            //Toast.makeText(this,"$cliente", Toast.LENGTH_SHORT).show()
 
          }// fim do Listener
 
      }// fim do onCreate
 
-    fun proteina(): String {
+    private fun proteina(): String {
         val proteinaSelecionadaId = proteinaRg.checkedRadioButtonId
         var proteinaSelecionadaStr: String = "Proteína"
 
@@ -78,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         return "Proteína: $proteinaSelecionadaStr"
     }
 
-    fun molhos(): String {
+    private fun molhos(): String {
         var molhosSelecionados = "Molhos selecionados: "
 
         val catchup = catchupCb.isChecked
@@ -125,5 +133,10 @@ class MainActivity : AppCompatActivity() {
             acompanhamentosSelecionados = "Sem acompanhamentos"
         }
         return acompanhamentosSelecionados
+    }
+
+    private fun nomeCliente(): String {
+        val cliente = nomeEt.text.toString()
+        return cliente
     }
 }

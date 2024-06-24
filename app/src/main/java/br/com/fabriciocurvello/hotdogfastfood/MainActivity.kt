@@ -93,21 +93,17 @@ class MainActivity : AppCompatActivity() {
         if (catchup) {
             molhosSelecionados += "\n - Catchup"
         }
-
         val mostarda = mostardaCb.isChecked
         if (mostarda) {
             molhosSelecionados += "\n - Mostarda"
         }
-
         val maionese = maioneseCb.isChecked
         if (maionese) {
             molhosSelecionados += "\n - Maionese"
         }
-
         if (molhosSelecionados == "Molhos selecionados: ") {
             molhosSelecionados = "Sem molho."
         }
-
         return molhosSelecionados
     }
 
@@ -118,17 +114,14 @@ class MainActivity : AppCompatActivity() {
         if (alface) {
             acompanhamentosSelecionados += "\n - Alface"
         }
-
         val tomate = tomateSW.isChecked
         if (tomate) {
             acompanhamentosSelecionados += "\n - Tomate"
         }
-
         val queijoRalado = queijoRaladoSw.isChecked
         if (queijoRalado) {
             acompanhamentosSelecionados += "\n - Queijo Ralado"
         }
-
         if (acompanhamentosSelecionados == "Acompanhamentos: ") {
             acompanhamentosSelecionados = "Sem acompanhamentos"
         }
@@ -136,7 +129,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun nomeCliente(): String {
-        val cliente = nomeEt.text.toString()
+        var cliente = nomeEt.text.toString()
+        if (cliente.isNullOrEmpty()) {
+            cliente = "Não informou nome"
+        }
         return cliente
     }
 }

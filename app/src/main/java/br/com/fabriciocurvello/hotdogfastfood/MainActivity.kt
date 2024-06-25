@@ -8,7 +8,6 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Switch
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -39,6 +38,7 @@ class MainActivity : AppCompatActivity() {
          }
 
          //"Linkando" as variáveis às views do activity_main.xml
+         nomeEt = findViewById(R.id.et_nome)
          pedidoBt = findViewById(R.id.bt_pedido)
          proteinaRg = findViewById(R.id.rg_proteina)
          catchupCb = findViewById(R.id.cb_catchup)
@@ -47,31 +47,37 @@ class MainActivity : AppCompatActivity() {
          alfaceSw = findViewById(R.id.sw_alface)
          tomateSW = findViewById(R.id.sw_tomate)
          queijoRaladoSw = findViewById(R.id.sw_queijo_ralado)
-         nomeEt = findViewById(R.id.et_nome)
          saidaPedidoTv = findViewById(R.id.tv_saida_pedido)
 
          //Listener no Botão
          pedidoBt.setOnClickListener {
+             val cliente = nomeCliente()
              val proteinaSelecionada = proteina()
              val molhosSelecionados = molhos()
              val acompanhamentosSelecionados = acompanhamentos()
-             val cliente = nomeCliente()
 
-             var texto = "Cliente: " + cliente + "\n\n" +
+             var pedido = "Cliente: " + cliente + "\n\n" +
                      proteinaSelecionada + "\n" +
                      molhosSelecionados + "\n" +
                      acompanhamentosSelecionados
 
-             saidaPedidoTv.text = texto
+             saidaPedidoTv.text = pedido
             //Toast.makeText(this,"$cliente", Toast.LENGTH_SHORT).show()
 
          }// fim do Listener
-
      }// fim do onCreate
+
+    private fun nomeCliente(): String {
+        var cliente = nomeEt.text.toString()
+        if (cliente.isNullOrEmpty()) {
+            cliente = "Não informou nome"
+        }
+        return cliente
+    }
 
     private fun proteina(): String {
         val proteinaSelecionadaId = proteinaRg.checkedRadioButtonId
-        var proteinaSelecionadaStr: String = "Proteína"
+        var proteinaSelecionadaStr: String = ""
 
         if (proteinaSelecionadaId != -1) {
             val proteinaSelecionada: RadioButton = findViewById(proteinaSelecionadaId)
@@ -86,53 +92,70 @@ class MainActivity : AppCompatActivity() {
         return "Proteína: $proteinaSelecionadaStr"
     }
 
+//    private fun molhos(): String {
+//        var molhosSelecionados = "Molhos selecionados: "
+//
+//        val catchup = catchupCb.isChecked
+//        if (catchup) {
+//            molhosSelecionados += "\n - Catchup"
+//        }
+//        val mostarda = mostardaCb.isChecked
+//        if (mostarda) {
+//            molhosSelecionados += "\n - Mostarda"
+//        }
+//        val maionese = maioneseCb.isChecked
+//        if (maionese) {
+//            molhosSelecionados += "\n - Maionese"
+//        }
+//        if (molhosSelecionados == "Molhos selecionados: ") {
+//            molhosSelecionados = "Sem molho."
+//        }
+//        return molhosSelecionados
+//    }
+
+
+    //FUN molhos() resumida usando mutableListOf:
     private fun molhos(): String {
-        var molhosSelecionados = "Molhos selecionados: "
+        val molhosSelecionados = mutableListOf<String>()
 
-        val catchup = catchupCb.isChecked
-        if (catchup) {
-            molhosSelecionados += "\n - Catchup"
-        }
-        val mostarda = mostardaCb.isChecked
-        if (mostarda) {
-            molhosSelecionados += "\n - Mostarda"
-        }
-        val maionese = maioneseCb.isChecked
-        if (maionese) {
-            molhosSelecionados += "\n - Maionese"
-        }
-        if (molhosSelecionados == "Molhos selecionados: ") {
-            molhosSelecionados = "Sem molho."
-        }
-        return molhosSelecionados
+        if (catchupCb.isChecked) molhosSelecionados.add("Catchup")
+        if (mostardaCb.isChecked) molhosSelecionados.add("Mostarda")
+        if (maioneseCb.isChecked) molhosSelecionados.add("Maionese")
+
+        return if (molhosSelecionados.isEmpty()) "Sem molho."
+               else "Molhos selecionados:\n - ${molhosSelecionados.joinToString("\n - ")}"
     }
 
+//    private fun acompanhamentos(): String {
+//        var acompanhamentosSelecionados = "Acompanhamentos: "
+//
+//        val alface = alfaceSw.isChecked
+//        if (alface) {
+//            acompanhamentosSelecionados += "\n - Alface"
+//        }
+//        val tomate = tomateSW.isChecked
+//        if (tomate) {
+//            acompanhamentosSelecionados += "\n - Tomate"
+//        }
+//        val queijoRalado = queijoRaladoSw.isChecked
+//        if (queijoRalado) {
+//            acompanhamentosSelecionados += "\n - Queijo Ralado"
+//        }
+//        if (acompanhamentosSelecionados == "Acompanhamentos: ") {
+//            acompanhamentosSelecionados = "Sem acompanhamentos"
+//        }
+//        return acompanhamentosSelecionados
+//    }
+
+    //FUN acompanhamentos() resumida usando mutableListOf:
     private fun acompanhamentos(): String {
-        var acompanhamentosSelecionados = "Acompanhamentos: "
+        val acompanhamentosSelecionados = mutableListOf<String>()
 
-        val alface = alfaceSw.isChecked
-        if (alface) {
-            acompanhamentosSelecionados += "\n - Alface"
-        }
-        val tomate = tomateSW.isChecked
-        if (tomate) {
-            acompanhamentosSelecionados += "\n - Tomate"
-        }
-        val queijoRalado = queijoRaladoSw.isChecked
-        if (queijoRalado) {
-            acompanhamentosSelecionados += "\n - Queijo Ralado"
-        }
-        if (acompanhamentosSelecionados == "Acompanhamentos: ") {
-            acompanhamentosSelecionados = "Sem acompanhamentos"
-        }
-        return acompanhamentosSelecionados
-    }
+        if (alfaceSw.isChecked) acompanhamentosSelecionados.add("Alface")
+        if (tomateSW.isChecked) acompanhamentosSelecionados.add("Tomate")
+        if (queijoRaladoSw.isChecked) acompanhamentosSelecionados.add("Queijo Ralado")
 
-    private fun nomeCliente(): String {
-        var cliente = nomeEt.text.toString()
-        if (cliente.isNullOrEmpty()) {
-            cliente = "Não informou nome"
-        }
-        return cliente
+        return if (acompanhamentosSelecionados.isEmpty()) "Sem acompanhamentos"
+        else "Acompanhamentos:\n - ${acompanhamentosSelecionados.joinToString("\n - ")}"
     }
 }

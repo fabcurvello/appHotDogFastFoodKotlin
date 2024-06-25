@@ -171,5 +171,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_verificar_pedido" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

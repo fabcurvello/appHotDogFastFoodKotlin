@@ -9,15 +9,16 @@
 
     <TextView
         android:id="@+id/tv_titulo"
-        android:text="Monte seu HOT DOG:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Monte seu HOT DOG:"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_nome" />
+
     <TextView
         android:id="@+id/tv_escolha"
         android:text="Proteina:"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tv_escolha"
         app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
         android:layout_marginTop="8dp"
         android:layout_marginStart="24dp">
         <RadioButton
@@ -40,12 +42,13 @@
             android:text="Salsicha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"/>
+            android:checked="true"
+            android:paddingEnd="12dp"/>
         <RadioButton
             android:id="@+id/rb_linguica"
             android:text="Linguiça"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RadioGroup>
 
     <TextView
@@ -89,53 +92,49 @@
         app:layout_constraintTop_toBottomOf="@+id/cb_catchup"
         android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"/>
+
     <Switch
         android:id="@+id/sw_alface"
-        android:text="Alface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_acompanhamentos"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"/>
+        android:layout_marginEnd="-24dp"
+        android:text="Alface"
+        app:layout_constraintEnd_toEndOf="@+id/tv_acompanhamentos"
+        app:layout_constraintTop_toBottomOf="@+id/tv_acompanhamentos" />
+
     <Switch
         android:id="@+id/sw_tomate"
-        android:text="Tomate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/sw_alface"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="32dp"/>
+        android:layout_marginEnd="-24dp"
+        android:text="Tomate"
+        app:layout_constraintEnd_toEndOf="@+id/tv_acompanhamentos"
+        app:layout_constraintTop_toBottomOf="@+id/sw_alface" />
+
     <Switch
         android:id="@+id/sw_queijo_ralado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-24dp"
         android:text="Queijo Ralado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/sw_tomate"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="32dp"/>
-    <TextView
-        android:id="@+id/tv_nome"
-        android:text="Nome para identificação no Hot Dog:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sw_queijo_ralado"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintEnd_toEndOf="@+id/tv_acompanhamentos"
+        app:layout_constraintTop_toBottomOf="@+id/sw_tomate" />
+
     <EditText
         android:id="@+id/et_nome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Seu Nome"
-        android:ems="10"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nome"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Informe o seu nome"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bt_pedido"
@@ -144,18 +143,9 @@
         android:layout_marginTop="16dp"
         android:text="Realizar Pedido"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_nome" />
-
-    <TextView
-        android:id="@+id/tv_verificar_pedido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Verifique o seu pedido:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_pedido" />
+        app:layout_constraintTop_toBottomOf="@+id/sw_queijo_ralado" />
 
     <TextView
         android:id="@+id/tv_saida_pedido"
@@ -164,11 +154,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:text="Clique em Realizar Pedido"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_verificar_pedido" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_pedido" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,6 +42,20 @@ class MainActivity : AppCompatActivity() {
          setupListeners()// fim do Listener
      }// fim do onCreate
 
+    private fun setupViews() {
+        //"Linkando" as variáveis às views do activity_main.xml
+        nomeEt = findViewById(R.id.et_nome)
+        pedidoBt = findViewById(R.id.bt_pedido)
+        proteinaRg = findViewById(R.id.rg_proteina)
+        catchupCb = findViewById(R.id.cb_catchup)
+        mostardaCb = findViewById(R.id.cb_mostarda)
+        maioneseCb = findViewById(R.id.cb_maionese)
+        alfaceSw = findViewById(R.id.sw_alface)
+        tomateSW = findViewById(R.id.sw_tomate)
+        queijoRaladoSw = findViewById(R.id.sw_queijo_ralado)
+        saidaPedidoTv = findViewById(R.id.tv_saida_pedido)
+    }
+
     private fun setupListeners() {
         //Listener no Botão
         pedidoBt.setOnClickListener {
@@ -60,19 +74,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupViews() {
-        //"Linkando" as variáveis às views do activity_main.xml
-        nomeEt = findViewById(R.id.et_nome)
-        pedidoBt = findViewById(R.id.bt_pedido)
-        proteinaRg = findViewById(R.id.rg_proteina)
-        catchupCb = findViewById(R.id.cb_catchup)
-        mostardaCb = findViewById(R.id.cb_mostarda)
-        maioneseCb = findViewById(R.id.cb_maionese)
-        alfaceSw = findViewById(R.id.sw_alface)
-        tomateSW = findViewById(R.id.sw_tomate)
-        queijoRaladoSw = findViewById(R.id.sw_queijo_ralado)
-        saidaPedidoTv = findViewById(R.id.tv_saida_pedido)
-    }
+
 
     private fun nomeCliente(): String {
         var cliente = nomeEt.text.toString()

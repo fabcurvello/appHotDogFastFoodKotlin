@@ -21,6 +21,7 @@ class MainActivityTest {
         val launch = ActivityScenario.launch(MainActivity::class.java)
 
         val clienteFake = "Roberto Claudio"
+        val textoRestante = "\n\nProteína: Salsicha\nSem molho.\nSem acompanhamentos"
 
         Thread.sleep(2000) //apenas para podermos acompanhar. 2seg de delay.
         //Clicar no et_nome
@@ -35,12 +36,8 @@ class MainActivityTest {
         Espresso.onView(ViewMatchers.withId(R.id.bt_pedido)).perform(ViewActions.click())
 
         Thread.sleep(2000) //apenas para podermos acompanhar. 2seg de delay.
-        //Validar se tv_saida_pedido contém clienteFake
-        Espresso.onView(ViewMatchers.withId(R.id.tv_saida_pedido)).check(ViewAssertions.matches(ViewMatchers.withText("Cliente: Roberto Claudio
-
-                Proteína: Salsicha
-                Sem molho.
-                Sem acompanhamentos"")))
+        //Validar se tv_saida_pedido contém clienteFake e textoRestante
+        Espresso.onView(ViewMatchers.withId(R.id.tv_saida_pedido)).check(ViewAssertions.matches(ViewMatchers.withText("Cliente: " + clienteFake + textoRestante)))
 
         Thread.sleep(2000) //apenas para podermos acompanhar. 2seg de delay.
     }

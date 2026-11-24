@@ -51,7 +51,6 @@ Esta mesma aplicação também foi desenvolvida em **Java**: [appHotDogJava](htt
 Outros repositórios de aula com o mesmo tema:
 
 - [appHotDogJava](https://github.com/fabcurvello/appHotDogJava)
-- [AppHotDogAnima](https://github.com/fabcurvello/AppHotDogAnima)
 - [AppHotDogFastFoodKotlinCom3Activities](https://github.com/fabcurvello/AppHotDogFastFoodKotlinCom3Activities)
 
 ## Autor
